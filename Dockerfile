@@ -1,11 +1,11 @@
 # Use a base image with Java (for Spring Boot)
-FROM openjdk:11-jre-slim
+FROM openjdk:17
 
 # Set the working directory for the backend application
 WORKDIR /app
 
 # Copy the compiled Spring Boot JAR file into the container
-COPY target/movieist-0.0.1-SNAPSHOT.jar app.jar
+COPY target/movieist-0.0.1-SNAPSHOT.jar /app/
 
 
 
@@ -13,4 +13,4 @@ COPY target/movieist-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8000
 
 # Define the command to run the Spring Boot application
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "movieist-0.0.1-SNAPSHOT.jar"]
