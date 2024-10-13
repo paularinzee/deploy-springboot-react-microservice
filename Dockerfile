@@ -10,7 +10,7 @@ COPY target/movieist-0.0.1-SNAPSHOT.jar /app/
 
 
 # Expose the port that the Spring Boot application will run on
-EXPOSE 8000
+EXPOSE 8080
 
 # Define the command to run the Spring Boot application
 CMD ["java", "-jar", "movieist-0.0.1-SNAPSHOT.jar"]
