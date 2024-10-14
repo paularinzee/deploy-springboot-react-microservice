@@ -41,7 +41,6 @@ jobs:
       with:
         context: ./moviest-frontend
         push: true
-        target: production
         tags: ${{ secrets.DOCKER_USERNAME }}/moviest-frontend:1.0
     
     # - name: Build & push Docker image
