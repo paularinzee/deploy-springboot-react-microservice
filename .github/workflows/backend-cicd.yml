@@ -4,14 +4,17 @@
 name: Build and JAR backend app
 
 on:
-  push:
-    branches:
-      - master
+  # push:
+  #   branches:
+  #     - master
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+    run:
+      working-directory: ./movieist-api
 
     steps:
       - uses: actions/checkout@v2
