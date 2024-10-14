@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy JAR app to Azure Web App - appjstestak
+name: Build and deploy Docker images for both frontend and backend
 
 on:
   # push:
@@ -14,16 +14,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Build Spring Boot backend
+        uses: actions/checkout@v2
         with:
-        context: ./movieist-api
+          context: ./movieist-api
 
       - name: Set up Java version
         uses: actions/setup-java@v1
         with:
           java-version: '17'
 
-      - name: Build Spring Boot backend
+      - name: Build with Maven
         run: mvn clean install
 
         
@@ -42,7 +43,9 @@ jobs:
       #     name: java-app
       #     path: '${{ github.workspace }}/target/*.jar'
 
-      - name: Build React frontend
+      - name: Use Node.js 20
+        with:
+          context: ./movieist-api
         uses: actions/setup-node@v4
         with:
           node-version: '20'
