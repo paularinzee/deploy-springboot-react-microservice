@@ -16,9 +16,7 @@ jobs:
     steps:
       - name: Build Spring Boot backend
         uses: actions/checkout@v2
-        with:
-          context: ./movieist-api
-
+        
       - name: Set up Java version
         uses: actions/setup-java@v1
         with:
@@ -27,7 +25,6 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
-        
       - name: Build & push Docker image
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
