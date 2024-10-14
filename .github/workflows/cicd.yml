@@ -23,7 +23,7 @@ jobs:
         with:
           java-version: '17'
 
-      - name: Build with Maven
+      - name: Build Spring Boot backend
         run: mvn clean install
 
         
@@ -42,7 +42,7 @@ jobs:
       #     name: java-app
       #     path: '${{ github.workspace }}/target/*.jar'
 
-      - name: Use Node.js 20
+      - name: Build React frontend
         uses: actions/setup-node@v4
         with:
           node-version: '20'
