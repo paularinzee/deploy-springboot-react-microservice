@@ -31,7 +31,7 @@ jobs:
     - name: Build & push Docker image
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
-        context: ./movieist-api
+        context: ./moviest-frontend
         image: paularinze/moviest-frontend
         tags: latest
         registry: docker.io
