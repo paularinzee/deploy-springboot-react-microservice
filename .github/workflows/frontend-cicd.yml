@@ -32,7 +32,7 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
         context: ./movieist-api
-        image: paularinze/movieist-frontend
+        image: paularinze/moviest-frontend
         tags: latest
         registry: docker.io
         dockerfile: Dockerfile
