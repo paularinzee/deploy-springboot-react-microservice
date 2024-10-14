@@ -4,9 +4,9 @@
 name: Build and deploy JAR app to Azure Web App - appjstestak
 
 on:
-  push:
-    branches:
-      - master
+  # push:
+  #   branches:
+  #     - master
   workflow_dispatch:
 
 jobs:
@@ -15,6 +15,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+        context: ./movieist-api
 
       - name: Set up Java version
         uses: actions/setup-java@v1
@@ -29,7 +31,7 @@ jobs:
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
           image: paularinze/movieist-backend
-          tags: latest
+          tags: 1.0
           registry: docker.io
           dockerfile: Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -39,5 +41,22 @@ jobs:
       #   with:
       #     name: java-app
       #     path: '${{ github.workspace }}/target/*.jar'
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: |
+          npm install
+        # build and test the apps
+      - name: build
+        run: |
+          npm run build
+      - name: Build & push Docker image
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: paularinze/movieist-frontend
+          tags: 1.0
 
  
