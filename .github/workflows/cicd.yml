@@ -44,11 +44,10 @@ jobs:
       #     path: '${{ github.workspace }}/target/*.jar'
 
       - name: Use Node.js 20
-        with:
-          context: ./movieist-api
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          context: ./movieist-api
       - name: Install dependencies
         run: |
           npm install
