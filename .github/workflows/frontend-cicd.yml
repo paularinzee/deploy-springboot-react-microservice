@@ -32,10 +32,11 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
         context: ./moviest-frontend
+        file: ./moviest-frontend/Dockerfile
         image: paularinze/moviest-frontend
-        tags: latest
+        tags: 1.0
         registry: docker.io
-        dockerfile: Dockerfile
+        # dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
    
