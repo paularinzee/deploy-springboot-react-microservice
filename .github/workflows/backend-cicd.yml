@@ -1,12 +1,12 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Docker images for both frontend and backend
+name: Build and JAR backend app
 
 on:
-  # push:
-  #   branches:
-  #     - master
+  push:
+    branches:
+      - master
   workflow_dispatch:
 
 jobs:
@@ -14,9 +14,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Build Spring Boot backend
-        uses: actions/checkout@v2
-        
+      - uses: actions/checkout@v2
+
       - name: Set up Java version
         uses: actions/setup-java@v1
         with:
@@ -25,11 +24,12 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
+        
       - name: Build & push Docker image
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
           image: paularinze/movieist-backend
-          tags: 1.0
+          tags: latest
           registry: docker.io
           dockerfile: Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -39,23 +39,5 @@ jobs:
       #   with:
       #     name: java-app
       #     path: '${{ github.workspace }}/target/*.jar'
-
-      - name: Use Node.js 20
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          context: ./movieist-api
-      - name: Install dependencies
-        run: |
-          npm install
-        # build and test the apps
-      - name: build
-        run: |
-          npm run build
-      - name: Build & push Docker image
-        uses: mr-smithers-excellent/docker-build-push@v5
-        with:
-          image: paularinze/movieist-frontend
-          tags: 1.0
 
  
